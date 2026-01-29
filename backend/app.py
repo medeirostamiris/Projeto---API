@@ -1,53 +1,21 @@
-from flask import Flask, jsonify, request
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from flask import Flask, jsonify
 from flask_cors import CORS
-import sqlite3
-from settings import TIPOS_PERMITIDOS, STATUS_PERMITIDOS
+
+from models.item_model import init_db
+from routes.item_route import item_routes
+
 app = Flask(__name__)
 CORS(app)
 
-DB_NAME = "database.db"
-
-# conexão com o banco
-def get_db_connection():
-    conn = sqlite3.connect(DB_NAME)
-    conn.row_factory = sqlite3.Row
-    return conn
-
-
-# cria tabela se não existir
-def init_db():
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS items (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            titulo TEXT NOT NULL,
-            tipo TEXT NOT NULL,
-            status TEXT NOT NULL,
-            descricao TEXT,
-            data TEXT
-        )
-    """)
-    conn.commit()
-    conn.close()
-
-
-# rota teste
 @app.route("/")
 def home():
     return jsonify({"message": "API Biblioteca funcionando 🚀"})
 
-
-# GET /items — listar livros
-@app.route("/items", methods=["GET"])
-def get_items():
-    conn = get_db_connection()
-    items = conn.execute("SELECT * FROM items").fetchall()
-    conn.close()
-
-    lista = [dict(item) for item in items]
-    return jsonify(lista), 200
-
+app.register_blueprint(item_routes)
 
 if __name__ == "__main__":
     init_db()

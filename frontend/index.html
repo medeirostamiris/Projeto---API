@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>📚 Registro de Livros</h1>
+
+<h2>Cadastrar livro</h2>
+<form id="formLivro">
+    <input type="text" id="titulo" placeholder="Título" required>
+
+<select id="status">
+    <option value="ativo">Ativo</option>
+    <option value="emprestado">Emprestado</option>
+    <option value="arquivado">Arquivado</option>
+</select>
+
+<textarea id="descricao" placeholder="Descrição"></textarea>
+
+<input type="date" id="data">
+
+
+    <button type="submit">Salvar</button>
+</form>
+
+<p id="mensagem"></p>
+
+<h2>Livros cadastrados</h2>
+<table border="1">
+    <thead>
+        <tr>
+    <th>Título</th>
+    <th>Tipo</th>
+    <th>Status</th>
+    <th>Descrição</th>
+    <th>Data</th>
+</tr>
+
+    </thead>
+    <tbody id="listaLivros"></tbody>
+</table>
+
+<script src="script.js"></script>
+</body>
+</html>
