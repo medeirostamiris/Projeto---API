@@ -1,0 +1,77 @@
+:root {
+  /* Tons principais */
+  --bg-principal: #F5EFE6;      /* bege claro / papel */
+  --bg-secundario: #E8DCCB;     /* areia */
+  --marrom-escuro: #5C4033;     /* café */
+  --marrom-medio: #8B5E3C;      /* madeira */
+  --caramelo: #C97C5D;          /* outono quente */
+  --laranja-queimado: #D97742;  /* folha seca */
+
+  /* Detalhes */
+  --verde-oliva: #7A8450;       /* folhas */
+  --vinho: #7B3F3F;             /* detalhe elegante */
+
+  /* Texto */
+  --texto-principal: #3E2F25;   /* marrom quase preto */
+  --texto-claro: #FFFFFF;
+
+  /* Estados */
+  --sucesso: #6A8F6A;
+  --erro: #B04A3F;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+
+  background-color: var(--bg-principal);
+  color: var(--texto-principal);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  padding: 20px;
+}
+
+
+header {
+  background-color: var(--marrom-escuro);
+  color: var(--texto-claro);
+}
+
+button {
+  background-color: var(--caramelo);
+  color: var(--texto-claro);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--laranja-queimado);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--bg-secundario);
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+
+
+#formLivro {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
