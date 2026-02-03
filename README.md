@@ -197,7 +197,8 @@ Abaixo estão exemplos de funcionamento do sistema:
 * Exclusão de item
 * Testes via Postman/Insomnia
 
-> Inserir aqui os prints reais do sistema funcionando.
+> <img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/07a421cd-6782-4041-992b-aac3afb8630d" />
+
 
 ## Reflexão Crítica
 
