@@ -1,18 +1,14 @@
 :root {
   /* Tons principais */
-  --bg-principal: #F5EFE6;      /* bege claro / papel */
-  --bg-secundario: #E8DCCB;     /* areia */
-  --marrom-escuro: #5C4033;     /* café */
-  --marrom-medio: #8B5E3C;      /* madeira */
-  --caramelo: #C97C5D;          /* outono quente */
-  --laranja-queimado: #D97742;  /* folha seca */
-
-  /* Detalhes */
-  --verde-oliva: #7A8450;       /* folhas */
-  --vinho: #7B3F3F;             /* detalhe elegante */
+  --bg-principal: #F5EFE6;
+  --bg-secundario: #E8DCCB;
+  --marrom-escuro: #5C4033;
+  --marrom-medio: #8B5E3C;
+  --caramelo: #C97C5D;
+  --laranja-queimado: #D97742;
 
   /* Texto */
-  --texto-principal: #3E2F25;   /* marrom quase preto */
+  --texto-principal: #3E2F25;
   --texto-claro: #FFFFFF;
 
   /* Estados */
@@ -20,88 +16,163 @@
   --erro: #B04A3F;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  min-height: 100vh;
   margin: 0;
-
-  display: flex;
-  justify-content: center;
-
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
   background-color: var(--bg-principal);
   color: var(--texto-principal);
-  font-family: 'Segoe UI', sans-serif;
 }
-
-.container {
-  width: 100%;
-  max-width: 900px;
-  padding: 20px;
-}
-
 
 header {
   background-color: var(--marrom-escuro);
   color: var(--texto-claro);
+  text-align: center;
+  padding: 30px 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.3rem;
+}
+
+.subtitle {
+  margin-top: 8px;
+  font-family: Georgia, serif;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+#formLivro {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#formLivro input,
+#formLivro select,
+#formLivro textarea {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #c9b8a5;
+  background: var(--bg-principal);
+  font-size: 14px;
+  resize: none;
+}
+
+#formLivro input:focus,
+#formLivro select:focus,
+#formLivro textarea:focus {
+  outline: none;
+  border-color: var(--caramelo);
+  background-color: #ffffff;
 }
 
 button {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
   background-color: var(--caramelo);
   color: var(--texto-claro);
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
 }
 
 button:hover {
   background-color: var(--laranja-queimado);
+  transform: translateY(-1px);
+}
+
+#mensagem {
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 600;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: var(--bg-secundario);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-th, td {
-  padding: 8px;
+th {
+  background-color: var(--marrom-medio);
+  color: var(--texto-claro);
+  padding: 10px;
   text-align: left;
 }
 
-
-
-#formLivro {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+td {
+  padding: 10px;
+  border-bottom: 1px solid #e0d2c0;
 }
 
-
-/* MODAL */
+tr:nth-child(even) {
+  background-color: #f3eadf;
+}
 
 .modal {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
-
+  inset: 0;
   background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-content {
-  background: white;
-  width: 400px;
-  margin: 10% auto;
-  padding: 20px;
+  background: #ffffff;
+  width: 420px;
+  padding: 25px;
+  border-radius: 14px;
+}
 
-  border-radius: 10px;
+.modal-content h2 {
+  text-align: center;
+  margin-top: 0;
 }
 
 .modal-buttons {
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
 }

@@ -7,10 +7,17 @@
 </head>
 <body>
 
-  <div class="container">
-    <h1> Registro de Livros</h1>
+<header>
+  <h1>Registro de Livros</h1>
+  <p class="subtitle">Cadastrar livro</p>
+</header>
 
-    <h2>Cadastrar livro</h2>
+<main class="container layout">
+
+  <!-- FORMULÁRIO -->
+  <section class="card">
+    <h2>Cadastrar Livro</h2>
+
     <form id="formLivro">
       <input type="text" id="titulo" placeholder="Título" required>
 
@@ -21,15 +28,20 @@
       </select>
 
       <textarea id="descricao" placeholder="Descrição"></textarea>
+
       <input type="date" id="data">
 
       <button type="submit">Salvar</button>
     </form>
 
     <p id="mensagem"></p>
+  </section>
 
-    <h2>Livros cadastrados</h2>
-    <table border="1">
+  <!-- LISTA -->
+  <section class="card">
+    <h2>Livros Cadastrados</h2>
+
+    <table>
       <thead>
         <tr>
           <th>Título</th>
@@ -42,11 +54,13 @@
       </thead>
       <tbody id="listaLivros"></tbody>
     </table>
-  </div>
+  </section>
 
-  <script src="script.js"></script>
+</main>
 
-  <!-- Modal de Edição -->
+<script src="script.js"></script>
+
+<!-- MODAL -->
 <div id="modalEditar" class="modal">
   <div class="modal-content">
 
@@ -81,3 +95,4 @@
 </body>
 
 </html>
+

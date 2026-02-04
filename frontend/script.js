@@ -45,9 +45,10 @@ async function carregarLivros() {
                 <td>${livro.descricao || "-"}</td>
                 <td>${livro.data || "-"}</td>
                 <td>
-                    <button onclick="abrirModalEditar(${livro.id})">✏️</button>
-                    <button onclick="deletarLivro(${livro.id})">🗑️</button>
+                <button onclick="abrirModalEditar(${livro.id})">Editar</button>
+                <button onclick="deletarLivro(${livro.id})">Excluir</button>
                 </td>
+
             `;
 
             tbody.appendChild(tr);
