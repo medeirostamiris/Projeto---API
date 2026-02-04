@@ -37,6 +37,7 @@
           <th>Status</th>
           <th>Descrição</th>
           <th>Data</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody id="listaLivros"></tbody>
@@ -44,6 +45,39 @@
   </div>
 
   <script src="script.js"></script>
+
+  <!-- Modal de Edição -->
+<div id="modalEditar" class="modal">
+  <div class="modal-content">
+
+    <h2>Editar Livro</h2>
+
+    <form id="formEditar">
+
+      <input type="hidden" id="editId">
+
+      <input type="text" id="editTitulo" placeholder="Título" required>
+
+      <select id="editStatus">
+        <option value="ativo">Ativo</option>
+        <option value="emprestado">Emprestado</option>
+        <option value="arquivado">Arquivado</option>
+      </select>
+
+      <textarea id="editDescricao" placeholder="Descrição"></textarea>
+
+      <input type="date" id="editData">
+
+      <div class="modal-buttons">
+        <button type="submit">Salvar</button>
+        <button type="button" onclick="fecharModal()">Cancelar</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
 </body>
 
 </html>

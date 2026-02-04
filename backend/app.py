@@ -1,5 +1,7 @@
 import sys
 import os
+from flask import Flask, jsonify, send_from_directory
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from flask import Flask, jsonify
@@ -13,7 +15,11 @@ CORS(app)
 
 @app.route("/")
 def home():
-    return jsonify({"message": "API Biblioteca funcionando 🚀"})
+    return send_from_directory("../frontend", "index.html")
+
+@app.route("/<path:filename>")
+def frontend_files(filename):
+    return send_from_directory("../frontend", filename)
 
 app.register_blueprint(item_routes)
 

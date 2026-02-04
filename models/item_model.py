@@ -1,13 +1,15 @@
 import sqlite3
 
-DB_NAME = "database.db"
+import os
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+DB_NAME = os.path.join(BASE_DIR, "..", "database.db")
 
 def get_db_connection():
     conn = sqlite3.connect(DB_NAME)
     conn.row_factory = sqlite3.Row
     return conn
-
 
 def init_db():
     conn = get_db_connection()
@@ -27,7 +29,6 @@ def init_db():
     conn.commit()
     conn.close()
 
-
 # CREATE
 def criar_item(titulo, tipo, status, descricao=None, data=None):
     conn = get_db_connection()
@@ -44,7 +45,6 @@ def criar_item(titulo, tipo, status, descricao=None, data=None):
 
     return item_id
 
-
 # READ (todos)
 def listar_items():
     conn = get_db_connection()
@@ -52,7 +52,6 @@ def listar_items():
     conn.close()
 
     return [dict(item) for item in items]
-
 
 # READ (por id)
 def buscar_item(id):
@@ -69,24 +68,51 @@ def buscar_item(id):
         return dict(item)
     return None
 
-
 # UPDATE (PUT)
-def atualizar_item(id, titulo, tipo, status, descricao, data):
+def atualizar_item(id, titulo=None, tipo=None, status=None, descricao=None, data=None):
     conn = get_db_connection()
+    cursor = conn.cursor()
 
-    conn.execute("""
+    campos = []
+    valores = []
+
+    if titulo is not None:
+        campos.append("titulo = ?")
+        valores.append(titulo)
+
+    if tipo is not None:
+        campos.append("tipo = ?")
+        valores.append(tipo)
+
+    if status is not None:
+        campos.append("status = ?")
+        valores.append(status)
+
+    if descricao is not None:
+        campos.append("descricao = ?")
+        valores.append(descricao)
+
+    if data is not None:
+        campos.append("data = ?")
+        valores.append(data)
+
+    # Se não veio nada pra atualizar
+    if not campos:
+        conn.close()
+        return
+
+    valores.append(id)
+
+    query = f"""
         UPDATE items
-        SET titulo = ?,
-            tipo = ?,
-            status = ?,
-            descricao = ?,
-            data = ?
+        SET {", ".join(campos)}
         WHERE id = ?
-    """, (titulo, tipo, status, descricao, data, id))
+    """
+
+    cursor.execute(query, valores)
 
     conn.commit()
     conn.close()
-
 
 # UPDATE (PATCH status)
 def atualizar_status(id, status):
@@ -100,7 +126,6 @@ def atualizar_status(id, status):
 
     conn.commit()
     conn.close()
-
 
 # DELETE
 def deletar_item(id):
