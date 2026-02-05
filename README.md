@@ -182,7 +182,7 @@ Exemplo:
 
 Os dados são armazenados utilizando:
 
-* Arquivo JSON (`items.json`) ou
+* Arquivo JSON (`items.json`)
 * Banco de dados SQLite
 
 Isso garante que as informações não sejam perdidas ao reiniciar o servidor.
